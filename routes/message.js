@@ -9,7 +9,7 @@ const fs = require("fs");
 const router = express.Router();
 
 router.get("/message", async (req, res, next) => {
-  const message = await fs.promises.readFile("message.txt", "utf-8");
+  const message = await fs.promises.readFile("message.txt", "UTF-8");
 
   const displayMessage = ` <div >
         <p>Message content:</p>
@@ -47,7 +47,6 @@ router.post("/message", async (req, res, next) => {
   const file = await fs.promises.readFile("message.txt");
   const completeChat = file + " " + fullMessage;
   await fs.promises.writeFile("message.txt", completeChat);
-
   res.redirect("/message");
 });
 

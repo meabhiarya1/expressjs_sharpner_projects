@@ -1,0 +1,23 @@
+h1 {
+  /* General styling */
+  text-align: center; /* Center the message */
+  font-size: 24px; /* Adjust font size as desired */
+  color: #59932c; /* Set a primary text color */
+  margin-top: 20px; /* Add some spacing above the message */
+
+  /* Visual emphasis */
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); /* Optional: subtle text shadow */
+
+  /* Animation (optional) */
+  animation: success-fade 1s ease-in-out;
+}
+
+@keyframes success-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
