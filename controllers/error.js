@@ -1,5 +1,4 @@
 const path = require("path");
-
 const rootDir = require("../util/path");
 
 exports.errorPage = (req, res, next) => {
