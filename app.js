@@ -1,27 +1,24 @@
-const path = require("path");
-const express = require("express");
-const bodyParser = require("body-parser");
+const path = require('path');
+
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
-const errorController = require("./controllers/error");
 
-const adminRoutes = require("./routes/admin");
-const shopRoutes = require("./routes/shop");
-const loginRoutes = require("./routes/login");
-const messageRoutes = require("./routes/message");
-const contactRoutes = require("./routes/contactus");
-const successRoutes = require("./routes/success");
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+const adminData = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/admin", adminRoutes);
+app.use('/admin', adminData.routes);
 app.use(shopRoutes);
-app.use(loginRoutes);
-app.use(messageRoutes);
-app.use(contactRoutes);
-app.use(successRoutes);
 
-app.use(errorController.errorPage);
+app.use((req, res, next) => {
+  res.status(404).render('404', { pageTitle: 'Page Not Found' });
+});
 
 app.listen(3000);
