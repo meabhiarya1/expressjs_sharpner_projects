@@ -1,3 +1,4 @@
+const Product = require("../models/product");
 const path = require("path");
 
 const rootDir = require("../util/path");
@@ -7,11 +8,13 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.addNewProduct = (req, res, next) => {
-  console.log(req.body);
+  const product = new Product(req.body.title);
+  product.save();
   res.redirect("/");
 };
 
 exports.getNewContact = (req, res, next) => {
+  const products = Product.fetchAll();
   res.sendFile(path.join(rootDir, "views", "contactus.html"));
 };
 
